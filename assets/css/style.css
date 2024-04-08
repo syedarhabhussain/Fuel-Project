@@ -1,0 +1,225 @@
+.common-body {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	background-color: #f7f7f7;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    color: white;
+    z-index: 1000;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+header a.active {
+    color: #667eea;
+    font-weight: bold;
+}
+
+.currencyinput {
+    border: 1px inset #ccc;
+}
+
+.currencyinput input {
+    border: 0;
+}
+
+.login-container {
+	width: 340px;
+	background: white;
+	padding: 40px;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease;
+}
+
+.register-container {
+	margin-top: 10%;
+	width: 340px;
+	background: white;
+	padding: 40px;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease;
+}
+
+.login-container:hover {
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+	margin-bottom: 20px;
+	transition: all 0.3s ease;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 10px;
+	color: #333;
+	font-size: 14px;
+	font-weight: 500;
+	transition: all 0.3s ease;
+}
+
+.form-group input {
+	width: 90%;
+	padding: 15px;
+	border: 2px solid #eaeaea;
+	border-radius: 6px;
+	font-size: 14px;
+	transition: border-color 0.3s ease;
+}
+
+.form-group input[type="submit"] {
+	width: 100%;
+	padding: 15px;
+	border: none;
+	background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	font-size: 16px;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-image 0.3s ease;
+}
+
+.form-group input:focus {
+	outline: none;
+	border-color: #007bff;
+}
+
+.form-group button {
+	width: 100%;
+	padding: 15px;
+	border: none;
+	background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	font-size: 16px;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-image 0.3s ease;
+}
+
+.form-group button:hover {
+	background-image: linear-gradient(135deg, #667eea 10%, #764ba2 90%);
+}
+
+.error {
+	color: #d9534f;
+	margin-bottom: 15px;
+	text-align: left;
+	font-size: 14px;
+}
+
+@keyframes slideUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.form-group input, .form-group button {
+	animation: slideUp 0.5s ease forwards;
+}
+
+.form-group input {
+	animation-delay: 0.3s;
+}
+
+.form-group button {
+	animation-delay: 0.5s;
+}
+
+.form-group select {
+	width: 100%;
+	padding: 15px;
+	border: 2px solid #eaeaea;
+	border-radius: 6px;
+	font-size: 14px;
+	transition: border-color 0.3s ease;
+}
+
+.form-group select:focus {
+	outline: none;
+	border-color: #007bff;
+}
+
+.history-body {
+	font-family: 'Arial', sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f4;
+	color: #333;
+}
+
+.container {
+	max-width: 960px;
+	margin: 20px auto;
+	padding: 20px;
+	background: white;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+	text-align: center;
+	color: #444;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+table, th, td {
+	border: 1px solid #ddd;
+}
+
+th {
+	height: 50px;
+	background-color: #f2f2f2;
+	color: #333;
+}
+
+td {
+	text-align: center;
+	padding: 8px;
+	font-size: 0.9em;
+}
+
+th, td {
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+tr:hover {
+	background-color: #ddd;
+}
+  
+  
