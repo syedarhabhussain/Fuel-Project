@@ -1,6 +1,8 @@
 <?php
 session_start();
-include ('db.php');
+require_once('db.php');
+$connector = new DatabaseConnector();
+$conn = $connector->connect();
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION["username"]))
 {
     $gallons = $_POST['gallonsRequested'];

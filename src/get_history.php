@@ -2,7 +2,9 @@
 session_start();
 $fuelQuotes = [];
 if (isset($_SESSION['username'])) {
-  include ('db.php');
+  require_once('db.php');
+  $connector = new DatabaseConnector();
+  $conn = $connector->connect();
   $user = $_SESSION['username'];
   $stmt = $conn->prepare("SELECT delivery_date, gallons, address, delivery_date, price, total FROM fuel_quote_history where username = ?");
   $stmt->bind_param("s", $user);

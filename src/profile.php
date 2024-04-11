@@ -15,7 +15,9 @@ $formDisabled = '';
 $errorMsg = '';
 
 if (isset($_SESSION['username'])) {
-    include ('db.php');
+    require_once('db.php');
+    $connector = new DatabaseConnector();
+    $conn = $connector->connect();
     $stmt = $conn->prepare("SELECT * FROM user_info WHERE username = ?");
     $stmt->bind_param("s", $_SESSION['username']);
     $stmt->execute();
