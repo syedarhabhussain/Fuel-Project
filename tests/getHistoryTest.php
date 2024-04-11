@@ -5,6 +5,7 @@ class GetHistoryTest extends TestCase
 {
     public function testGetHistoryInclude()
     {
+        $_SESSION['username'] = 'testUser';
         ob_start();
         include __DIR__ . '/../src/get_history.php';
         $output = ob_get_clean();

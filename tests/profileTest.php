@@ -5,6 +5,7 @@ class ProfileFormTest extends TestCase
 {
     public function testProfileInclude()
     {
+        $_SESSION['username'] = 'testUser';
         ob_start();
         include __DIR__ . '/../src/profile.php';
         $output = ob_get_clean();

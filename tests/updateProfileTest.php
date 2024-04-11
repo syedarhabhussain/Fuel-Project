@@ -5,6 +5,7 @@ class UpdateProfileTest extends TestCase
 {
     public function testUpdateProfileInclude()
     {
+        $_SESSION['username'] = 'testUser';
         ob_start();
         include __DIR__ . '/../src/update_profile.php';
         $output = ob_get_clean();

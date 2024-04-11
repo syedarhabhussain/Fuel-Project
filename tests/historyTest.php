@@ -5,6 +5,7 @@ class HistoryFormTest extends TestCase
 {
     public function testHistoryInclude()
     {
+        $_SESSION['username'] = 'testUser';
         ob_start();
         include __DIR__ . '/../src/history.php';
         $output = ob_get_clean();

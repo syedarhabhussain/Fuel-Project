@@ -5,6 +5,7 @@ class HandleRegisterTest extends TestCase
 {
     public function testHandleRegisterInclude()
     {
+        $_SESSION['username'] = 'testUser';
         ob_start();
         include __DIR__ . '/../src/handle_register.php';
         $output = ob_get_clean();
