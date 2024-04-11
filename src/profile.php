@@ -1,4 +1,5 @@
 <?php
+global $conn;
 @session_start();
 $userProfile = [
     'username' => '',
@@ -23,8 +24,8 @@ if (isset($_SESSION['username'])) {
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        $userProfile = $result->fetch_assoc();
+    if ($row = $result->fetch_assoc()) {
+        $userProfile = $row;
     } else {
         $errorMsg = "Profile not found.";
     }

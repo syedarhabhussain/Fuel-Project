@@ -1,19 +1,62 @@
 <?php
 use PHPUnit\Framework\TestCase;
-require_once __DIR__ . '/../src/db.php';
 
-class ProfileFormTest extends TestCase
+class ProfileTest extends TestCase
 {
-    public function testProfileInclude()
+    private $originalSession;
+
+    protected function setUp(): void
     {
-        $_SESSION['username'] = 'testUser';
-        $mysqli = $this->createMock(mysqli::class);
-        $connector = new DatabaseConnector();
-        $connector->setConnection($mysqli);
+        $this->originalSession = $_SESSION;
+    }
+
+    protected function tearDown(): void
+    {
+        $_SESSION = $this->originalSession; 
+    }
+    public function testUserNotLoggedIn()
+    {
+        
+        unset($_SESSION['username']);
+
         ob_start();
         include __DIR__ . '/../src/profile.php';
         $output = ob_get_clean();
-        $this->assertStringContainsString('<head', $output);
-        $this->assertStringContainsString('<body', $output);
+        $this->assertStringContainsString('Not logged in.', $output);
+    }
+
+    public function testUserProfileRetrieved()
+    {
+        $_SESSION['username'] = 'testUser';
+
+        global $conn;
+        $mockResult = $this->createMock(mysqli_result::class);
+        $mockResult->method('fetch_assoc')->willReturn([
+            'username' => 'testUser',
+            'full_name' => 'Test User',
+            'address1' => '123 Test Lane',
+            'address2' => '',
+            'city' => 'Testville',
+            'state' => 'TX',
+            'zip_code' => '12345'
+        ]);
+
+        $stmtMock = $this->createMock(mysqli_stmt::class);
+        $stmtMock->method('execute')->willReturn(true);
+        $stmtMock->method('get_result')->willReturn($mockResult);
+
+        $conn = $this->getMockBuilder(mysqli::class)
+                    ->disableOriginalConstructor()
+                    ->getMock();
+        $conn->method('prepare')->willReturn($stmtMock);
+
+        ob_start();
+        include __DIR__ . '/../src/profile.php';
+        $output = ob_get_clean();
+
+        
+        $this->assertStringContainsString('Test User', $output);
+        $this->assertStringContainsString('123 Test Lane', $output);
+        
     }
 }
