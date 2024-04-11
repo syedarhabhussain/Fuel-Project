@@ -9,7 +9,9 @@ class GetHistoryTest extends TestCase
         global $conn;
         $_SESSION['username'] = 'testUser';
         $conn = $this->createMock(mysqli::class);
-        $conn->method('prepare')->willReturn($this->createMock(mysqli_stmt::class));
+        $stmt = $this->createMock(mysqli_stmt::class);
+        $conn->method('prepare')->willReturn($stmt);
+        $stmt->method('get_result')->willReturn(5);
         ob_start();
         include __DIR__ . '/../src/get_history.php';
         $output = ob_get_clean();
