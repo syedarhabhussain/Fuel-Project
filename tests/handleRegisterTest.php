@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-class footerTest extends TestCase
+class HandleRegisterTest extends TestCase
 {
     public function testFooterInclude()
     {
