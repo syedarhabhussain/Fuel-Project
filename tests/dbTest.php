@@ -3,7 +3,7 @@ use PHPUnit\Framework\TestCase;
 
 class DBTest extends TestCase
 {
-    public function testFooterInclude()
+    public function testDBInclude()
     {
         ob_start();
         include __DIR__ . '/../src/db.php';

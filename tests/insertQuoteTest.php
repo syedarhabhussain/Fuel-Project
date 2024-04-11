@@ -3,7 +3,7 @@ use PHPUnit\Framework\TestCase;
 
 class InsertQuoteTest extends TestCase
 {
-    public function testFooterInclude()
+    public function testInsertQuoteInclude()
     {
         ob_start();
         include __DIR__ . '/../src/insert_quote.php';

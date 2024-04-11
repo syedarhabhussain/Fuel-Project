@@ -3,7 +3,7 @@ use PHPUnit\Framework\TestCase;
 
 class LogoutTest extends TestCase
 {
-    public function testFooterInclude()
+    public function testLogoutInclude()
     {
         ob_start();
         include __DIR__ . '/../src/logout.php';

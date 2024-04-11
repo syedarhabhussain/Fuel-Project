@@ -3,7 +3,7 @@ use PHPUnit\Framework\TestCase;
 
 class HandleRegisterTest extends TestCase
 {
-    public function testFooterInclude()
+    public function testHandleRegisterInclude()
     {
         ob_start();
         include __DIR__ . '/../src/handle_register.php';
