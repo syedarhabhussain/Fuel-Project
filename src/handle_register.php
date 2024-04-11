@@ -1,4 +1,5 @@
 <?php
+global $conn;
 @session_start();
 require_once('db.php');
 if (!isset($conn)) {
@@ -13,11 +14,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("s", $user);
     $stmt->execute();
     $result = $stmt->get_result();
-    if ($result->num_rows > 0) {    
+    if ($row = $result->fetch_assoc()) {
         $stmt->close();
         $conn->close();
-        header("Location: register.php?error=username_not_available");
-        exit();
+        if (!headers_sent()) {
+            header("Location: register.php?error=username_not_available");
+            exit();
+        }
     }
     $stmt->close();
     $stmt = $conn->prepare("INSERT INTO user_login (username, password) VALUES (?, ?)");
@@ -27,8 +30,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['username'] = $user;
         $stmt->close();
         $conn->close();
-        header("Location: profile.php");
-        exit();
+        if (!headers_sent()) {
+            header("Location: profile.php");
+            exit();
+        }
     } else {
         echo "Error: " . $stmt->error;
         $stmt->close();
