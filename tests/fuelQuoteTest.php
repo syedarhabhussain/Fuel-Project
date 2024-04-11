@@ -1,12 +1,12 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-class LoginFormTest extends TestCase
+class FuelQuoteFormTest extends TestCase
 {
-    public function testLoginInclude()
+    public function testFuelQuoteInclude()
     {
         ob_start();
-        include __DIR__ . '/../src/index.php';
+        include __DIR__ . '/../src/fuel-quote-form.php';
         $output = ob_get_clean();
         $this->assertStringContainsString('<head', $output);
         $this->assertStringContainsString('<body', $output);

@@ -13,6 +13,6 @@
     </filter>
 
     <logging>
-        <log type="coverage-html" target="coverage-report" charset="UTF-8"/>
+        <log type="coverage-html" target="coverage-report"/>
     </logging>
 </phpunit>
