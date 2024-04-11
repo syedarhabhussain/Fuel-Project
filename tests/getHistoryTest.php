@@ -9,26 +9,16 @@ class GetHistoryTest extends TestCase
     {
         global $conn;
         $_SESSION['username'] = 'testUser';
-        
-        $result = $this->createMock(mysqli_result::class);
-        $result->method('fetch_assoc')->will($this->onConsecutiveCalls([
-            'delivery_date' => '2021-01-01', 
-            'gallons' => 100, 
-            'address' => '123 Main St', 
-            'price' => 2.50, 
-            'total' => 250
-        ], null));
-        $result->num_rows = 1;
-
-        $stmt = $this->createMock(mysqli_stmt::class);
-        $stmt->method('bind_param')->willReturn(true);
-        $stmt->method('execute')->willReturn(true);
-        $stmt->method('get_result')->willReturn($result);
-        
-        $conn = $this->getMockBuilder(mysqli::class)
-                     ->disableOriginalConstructor()
-                     ->getMock();
-        $conn->method('prepare')->willReturn($stmt);
+        $mockRepository = $this->createMock(FuelQuoteRepository::class);
+        $mockRepository->method('getFuelQuotesByUser')->willReturn([
+            [
+                'delivery_date' => '2021-01-01',
+                'gallons' => 100,
+                'address' => '123 Main St',
+                'price' => 2.50,
+                'total' => 250
+            ]
+        ]);
         
         ob_start();
         include __DIR__ . '/../src/get_history.php';
