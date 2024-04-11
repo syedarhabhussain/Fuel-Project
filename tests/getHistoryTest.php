@@ -7,10 +7,11 @@ class GetHistoryTest extends TestCase
     public function testGetHistoryInclude()
     {
         global $conn;
+        global $repository;
         $_SESSION['username'] = 'testUser';
         $conn = $this->createMock(mysqli::class);
-        $mockRepository = $this->createMock(FuelQuoteRepository::class);
-        $mockRepository->method('getFuelQuotesByUser')->willReturn([
+        $repository = $this->createMock(FuelQuoteRepository::class);
+        $repository->method('getFuelQuotesByUser')->willReturn([
             [
                 'delivery_date' => '2021-01-01',
                 'gallons' => 100,

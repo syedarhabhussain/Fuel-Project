@@ -1,5 +1,6 @@
 <?php
 global $conn;
+global $repository;
 @session_start();
 require_once ('db.php');
 require_once ('FuelQuoteRepository.php');
@@ -9,7 +10,9 @@ if (isset($_SESSION['username'])) {
     $connector = new DatabaseConnector();
     $conn = $connector->connect();
   }
-  $repository = new FuelQuoteRepository($conn);
+  if(!isset($repository)){
+    $repository = new FuelQuoteRepository($conn);
+  }
   $fuelQuotes = $repository->getFuelQuotesByUser($_SESSION['username']);
   if (empty($fuelQuotes)) {
     echo "0 results";
