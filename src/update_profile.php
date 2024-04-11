@@ -25,8 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['username'])) {
     if ($stmt->execute()) {
         $stmt->close();
         $conn->close();
-        header("Location: fuel-quote-form.php");
-        exit();
+        if (!headers_sent()) {
+            header("Location: fuel-quote-form.php");
+            exit();
+        }
     } else {
         echo "Error: " . $stmt->error;
     }
@@ -34,7 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['username'])) {
     $conn->close();
 } else {
     $conn->close();
-    header("Location: profile.php?error=not_logged_in");
-    exit();
+    if (!headers_sent()) {
+        header("Location: profile.php?error=not_logged_in");
+        exit();
+    }
 }
 ?>
