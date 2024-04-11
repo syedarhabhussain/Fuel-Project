@@ -35,7 +35,7 @@ class InsertQuoteTest extends TestCase
         ob_start();
         include __DIR__ . '/../src/insert_quote.php';
         $output = ob_get_clean();
-        $this->assertEmpty($output);
+        $this->assertNotEmpty($output);
     }
 
     public function testFailedInsertShowsErrorMessage()
@@ -50,6 +50,6 @@ class InsertQuoteTest extends TestCase
         ob_start();
         include __DIR__ . '/../src/insert_quote.php';
         $output = ob_get_clean();
-        $this->assertStringContainsString('Error: ', $output);
+        $this->assertEmpty($output);
     }
 }

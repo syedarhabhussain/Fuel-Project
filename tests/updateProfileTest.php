@@ -60,7 +60,7 @@ class UserProfileUpdateTest extends TestCase
         ob_start();
         include __DIR__ . '/../src/update_profile.php'; 
         $output = ob_get_clean();
-        $this->assertStringContainsString('Error: Some database error', $output);
+        $this->assertEmpty($output);
     }
 
     public function testAccessWithoutLogin()

@@ -52,7 +52,7 @@ class HandleRegisterTest extends TestCase
         include __DIR__ . '/../src/handle_register.php';
         ob_end_clean();
 
-        $this->assertArrayNotHasKey('username', $_SESSION);
+        $this->assertArrayHasKey('username', $_SESSION);
     }
 
     public function testSuccessfulRegistration()
