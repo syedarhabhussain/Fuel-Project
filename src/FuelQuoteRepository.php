@@ -10,10 +10,8 @@ class FuelQuoteRepository {
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $fuelQuotes[] = $row;
-            }
+        while ($row = $result->fetch_assoc()) {
+            $fuelQuotes[] = $row;
         }
         $stmt->close();
         return $fuelQuotes;
