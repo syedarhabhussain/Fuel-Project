@@ -14,8 +14,10 @@ $errorMsg = '';
 
 if (isset($_SESSION['username'])) {
     require_once('db.php');
-    $connector = new DatabaseConnector();
-    $conn = $connector->connect();
+    if (!isset($conn)) {
+      $connector = new DatabaseConnector();
+      $conn = $connector->connect();
+    }
     $stmt = $conn->prepare("SELECT * FROM user_info WHERE username = ?");
     $stmt->bind_param("s", $_SESSION['username']);
     $stmt->execute();

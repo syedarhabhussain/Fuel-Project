@@ -1,8 +1,10 @@
 <?php
 @session_start();
 require_once('db.php');
-$connector = new DatabaseConnector();
-$conn = $connector->connect();
+if (!isset($conn)) {
+  $connector = new DatabaseConnector();
+  $conn = $connector->connect();
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $_POST['username'];
     $pass = $_POST['password']; 
