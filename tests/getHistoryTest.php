@@ -6,10 +6,9 @@ class GetHistoryTest extends TestCase
 {
     public function testGetHistoryInclude()
     {
+        global $conn;
         $_SESSION['username'] = 'testUser';
-        $mysqli = $this->createMock(mysqli::class);
-        $connector = new DatabaseConnector();
-        $connector->setConnection($mysqli);
+        $conn = $this->createMock(mysqli::class);
         ob_start();
         include __DIR__ . '/../src/get_history.php';
         $output = ob_get_clean();
