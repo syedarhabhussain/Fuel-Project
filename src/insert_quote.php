@@ -1,4 +1,5 @@
 <?php
+global $conn;
 @session_start();
 require_once('db.php');
 if (!isset($conn)) {
@@ -20,8 +21,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION["username"]))
     $stmt->bind_param("sissdd", $user, $gallons, $address, $delivery_date, $price, $total);
 
     if ($stmt->execute()) {
-        header("Location: history.php");
-        exit();
+        if (!headers_sent()) {
+            header("Location: history.php");
+            exit();
+        }
     } else {
         echo "Error: " . $stmt->error;
     }
