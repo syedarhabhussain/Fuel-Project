@@ -6,10 +6,20 @@ class HistoryFormTest extends TestCase
 {
     public function testHistoryInclude()
     {
+        global $conn;
+        global $repository;
         $_SESSION['username'] = 'testUser';
-        $mysqli = $this->createMock(mysqli::class);
-        $connector = new DatabaseConnector();
-        $connector->setConnection($mysqli);
+        $conn = $this->createMock(mysqli::class);
+        $repository = $this->createMock(FuelQuoteRepository::class);
+        $repository->method('getFuelQuotesByUser')->willReturn([
+            [
+                'delivery_date' => '2021-01-01',
+                'gallons' => 100,
+                'address' => '123 Main St',
+                'price' => 2.50,
+                'total' => 250
+            ]
+        ]);
         ob_start();
         include __DIR__ . '/../src/history.php';
         $output = ob_get_clean();
