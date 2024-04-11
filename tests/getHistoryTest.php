@@ -6,7 +6,9 @@ class GetHistoryTest extends TestCase
 {
     public function testGetHistoryInclude()
     {
+        global $conn;
         $_SESSION['username'] = 'testUser';
+        $conn = $this->createMock(mysqli::class);
         $mockRepository = $this->createMock(FuelQuoteRepository::class);
         $mockRepository->method('getFuelQuotesByUser')->willReturn([
             [
