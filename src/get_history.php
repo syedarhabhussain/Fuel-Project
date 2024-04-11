@@ -1,34 +1,11 @@
 <?php
 @session_start();
-global $conn;
-class FuelQuoteRepository {
-  private $conn;
-  public function __construct($conn) {
-      $this->conn = $conn;
-  }
-  public function getFuelQuotesByUser($username) {
-      $fuelQuotes = [];
-      $stmt = $this->conn->prepare("SELECT delivery_date, gallons, address, delivery_date, price, total FROM fuel_quote_history WHERE username = ?");
-      $stmt->bind_param("s", $username);
-      $stmt->execute();
-      $result = $stmt->get_result();
-      if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) {
-              $fuelQuotes[] = $row;
-          }
-      }
-      $stmt->close();
-      return $fuelQuotes;
-  }
-}
-
+require_once ('db.php');
+require_once ('FuelQuoteRepository.php');
 $fuelQuotes = [];
 if (isset($_SESSION['username'])) {
-  require_once ('db.php');
-  if (!isset($conn)) {
-    $connector = new DatabaseConnector();
-    $conn = $connector->connect();
-  }
+  $connector = new DatabaseConnector();
+  $conn = $connector->connect();
   $repository = new FuelQuoteRepository($conn);
   $fuelQuotes = $repository->getFuelQuotesByUser($_SESSION['username']);
   if (empty($fuelQuotes)) {

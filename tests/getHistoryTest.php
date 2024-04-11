@@ -1,13 +1,11 @@
 <?php
 use PHPUnit\Framework\TestCase;
-
-require_once __DIR__ . '/../src/db.php';
+require_once __DIR__ . '/../src/FuelQuoteRepository.php';
 
 class GetHistoryTest extends TestCase
 {
     public function testGetHistoryInclude()
     {
-        global $conn;
         $_SESSION['username'] = 'testUser';
         $mockRepository = $this->createMock(FuelQuoteRepository::class);
         $mockRepository->method('getFuelQuotesByUser')->willReturn([
