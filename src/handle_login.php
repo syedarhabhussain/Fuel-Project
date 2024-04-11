@@ -17,11 +17,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['username'] = $user;
         $stmt->close();
         $conn->close();
-        header("Location: fuel-quote-form.php");
-        exit();
+        if (!headers_sent()) {
+            header("Location: fuel-quote-form.php");
+            exit();
+        }
     } else {
-        header("Location: index.php?error=invalid_credentials");
-        exit();
+        if (!headers_sent()) {
+            header("Location: index.php?error=invalid_credentials");
+            exit();
+        }
     }
 }
-?>
