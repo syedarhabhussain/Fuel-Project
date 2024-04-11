@@ -1,7 +1,5 @@
 <?php
-session_start(); // Start the session at the very beginning
-
-// Initialize variables
+@session_start();
 $userProfile = [
     'username' => '',
     'full_name' => '',

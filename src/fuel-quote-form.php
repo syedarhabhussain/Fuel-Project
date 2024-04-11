@@ -1,5 +1,5 @@
 <?php
-session_start();
+@session_start();
 $formDisabled = '';
 $errorMsg = '';
 if (!isset($_SESSION['username'])) {

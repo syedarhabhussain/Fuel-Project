@@ -1,5 +1,5 @@
 <?php
-session_start();
+@session_start();
 $fuelQuotes = [];
 if (isset($_SESSION['username'])) {
   require_once('db.php');
