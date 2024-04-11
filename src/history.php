@@ -1,4 +1,7 @@
-<?php include 'get_history.php'; ?>
+<?php 
+$fuelQuotes = [];
+include 'get_history.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
