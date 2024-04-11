@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-require_once __DIR__ . '/../src/get_history.php';
+require_once __DIR__ . '/../src/FuelQuoteRepository.php';
 
 class GetHistoryTest extends TestCase
 {
